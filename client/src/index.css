@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @import "tw-golden-spacing";
+
+@theme{
+    --color-primary: #300EF1;
+    --color-secondary: #3C3663;
+    --color-border: #897EC8;
+    --color-black: #03010E;
+    --color-white: #EAE7FE;
+}
