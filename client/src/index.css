@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 @import "tw-golden-spacing";
 
 @theme{
+    --font-kanit: "Kanit", serif;
     --color-primary: #300EF1;
-    --color-secondary: #3C3663;
-    --color-border: #897EC8;
+    --color-secondary: #474554;
+    --color-border: #9D9AAC;
     --color-black: #03010E;
-    --color-white: #EAE7FE;
+    --color-white: #E6E2F8;
+    --text-lg: 1.875em; /* 30px */
+    --text-md: 1em;
 }
