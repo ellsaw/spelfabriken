@@ -47,6 +47,8 @@ export default function NewProduct() {
     
     const [categoryIndex, setCategoryIndex] = useState(0)
 
+    const [activeError, setActiveError] = useState(null);
+
     const formHandler = {
         superCategory(event){
             setCategoryIndex(event.target.value)
@@ -56,12 +58,24 @@ export default function NewProduct() {
 
             const formData = new FormData(event.target);
 
-
-            console.log([...formData.entries()]);
-
             fetch("/api/products/new", {
                 method: "POST",
                 body: formData
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success){
+                    navigate("/admin/products")
+                }
+                else if (data.error === "UNIQUE constraint failed: products.sku"){
+                    setActiveError("SKU")
+                }
+                else{
+                    setActiveError("Unknown")
+                }
+            })
+            .catch(() => { // Catch for no response
+                setActiveError("Unknown")
             })
         }
     }
@@ -102,7 +116,8 @@ export default function NewProduct() {
             </div>
             <div>
                 <label htmlFor="sku" className="font-medium">SKU <span className="text-red-700">*</span></label>
-                <input className="outline-1 outline-border rounded-sm px-golden-sm py-golden-xs" type="text" name="sku" id="sku" pattern="[A-Za-z]{3}[0-9]{3}" maxLength="6" required/>
+                <input className={`outline-1 rounded-sm px-golden-sm py-golden-xs ${activeError === "SKU" ? "outline-red-700" : "outline-border"}`} type="text" name="sku" id="sku" pattern="[A-Za-z]{3}[0-9]{3}" maxLength="6" required onChange={() => {if(activeError) setActiveError(null) }}/>
+                <p className="text-red-700">{activeError === "SKU" ? "Denna SKU används redan, försök igen" : ""}</p>
             </div>
             <div>
                 <label htmlFor="price" className="font-medium">Pris <span className="text-red-700">*</span></label>
@@ -120,6 +135,7 @@ export default function NewProduct() {
                 <p className= "opacity-75 font-light">.WEBP</p>
             </div>
             <button className="bg-primary text-white py-golden-md rounded-lg cursor-pointer hover:bg-primary-40l transition-all duration-100" type="submit">Lägg till</button>
+            {activeError && activeError != "SKU" ? <p className="text-red-700">Ett fel uppstod, prova igen senare</p> : null}
         </form>
     </div>
  );

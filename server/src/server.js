@@ -22,10 +22,10 @@ app.post("/api/products/new", upload.single("image"), (req, res) => {
 
     const response = dbAdd(product_name, description, category, brand, sku, image, price, date)
 
-    if(response){
-        res.status(500).json(response)
-    } else{
-        console.log("Request successful")
-        res.status(200)
+    if (response) {
+        res.status(400).json({ error: response });
+    } else {
+        console.log("Request successful");
+        res.status(200).json({ success: true });
     }
 })
