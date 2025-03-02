@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function NewProduct() {
+    const navigate = useNavigate();
+
     const subcategories = [
         [
             {value: "Xbox"},
