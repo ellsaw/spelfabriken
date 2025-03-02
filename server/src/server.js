@@ -25,6 +25,7 @@ app.post("/api/products/new", upload.single("image"), (req, res) => {
     if(response){
         res.status(500).json(response)
     } else{
+        console.log("Request successful")
         res.status(200)
     }
 })
