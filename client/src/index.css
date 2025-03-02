@@ -5,10 +5,12 @@
 @theme{
     --font-kanit: "Kanit", serif;
     --color-primary: #4A33CC;
-    --color-secondary: #474554;
+    --color-primary-40l: #3B29A3;
+    --color-secondary: #1A0F57;
     --color-border: #9D9AAC;
     --color-black: #03010E;
-    --color-white: #E6E2F8;
+    --color-white: #F1EFFB;
+    --color-pure-white: #fff;
     --text-lg: 1.875em; /* 30px */
     --text-md: 1em;
 }

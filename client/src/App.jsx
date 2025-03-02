@@ -7,9 +7,10 @@ import AdminLayout from './components/layout/AdminLayout.jsx'
 
 import Home from './components/store/Home.jsx';
 import PublicLayout from './components/layout/PublicLayout.jsx';
+import { useEffect } from 'react';
 
 export default function App() {
- return (
+  return (
     <BrowserRouter>
         <Routes>
             <Route element={<PublicLayout/>}>

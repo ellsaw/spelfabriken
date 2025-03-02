@@ -8,7 +8,7 @@ export default function PublicLayout() {
     <title>Dashboard</title>
     <div className="bg-white font-kanit flex absolute h-full w-full">
         <Nav/>
-        <main className="grow-1 flex justify-center items-center">
+        <main className="grow-1 flex p-golden-xl justify-center">
             <Outlet/>
         </main>
     </div>
