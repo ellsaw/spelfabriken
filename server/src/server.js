@@ -1,7 +1,7 @@
 import express from "express";
 import multer from 'multer';
 
-import { dbAdd } from "../database/db.js";
+import { dbAdd, dbGetForAdmin } from "../database/db.js";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage })
@@ -27,5 +27,17 @@ app.post("/api/products/admin", upload.single("image"), (req, res) => {
     } else {
         console.log("Request successful");
         res.status(200).json({ success: true });
+    }
+})
+
+app.get("/api/products/admin", (req, res) => {
+    console.log("GET sent to /api/products/admin")
+
+    const products = dbGetForAdmin();
+
+    if(products){
+        res.status(200).json(products)
+    } else {
+        res.status(500).json(null)
     }
 })

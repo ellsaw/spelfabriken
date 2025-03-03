@@ -45,4 +45,23 @@ function dbAdd(product_name, description, category, brand, sku, img, price, date
     }
 }
 
-export { dbAdd }
+function dbGetForAdmin(){
+    try {
+        const stmt = db.prepare(`
+            SELECT
+            id,
+            product_name,
+            category,
+            brand,
+            sku,
+            price
+            FROM products
+            ORDER BY id DESC`)
+        return stmt.all();
+    } catch (error) {
+        console.error(error.message)
+        return null;
+    }
+}
+
+export { dbAdd, dbGetForAdmin }
