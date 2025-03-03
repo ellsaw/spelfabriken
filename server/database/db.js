@@ -64,4 +64,16 @@ function dbGetForAdmin(){
     }
 }
 
-export { dbAdd, dbGetForAdmin }
+function dbDelete(id){
+    try {
+        const stmt = db.prepare(`
+            DELETE FROM products WHERE id = ?
+            `)
+        stmt.run(id);
+    } catch (error) {
+        console.error(error.message);
+        return error.message;
+    }
+}
+
+export { dbAdd, dbGetForAdmin, dbDelete }
