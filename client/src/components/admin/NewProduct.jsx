@@ -58,7 +58,7 @@ export default function NewProduct() {
 
             const formData = new FormData(event.target);
 
-            fetch("/api/products/new", {
+            fetch("/api/products/admin", {
                 method: "POST",
                 body: formData
             })

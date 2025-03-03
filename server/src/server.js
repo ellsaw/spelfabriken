@@ -14,8 +14,8 @@ app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
 
-app.post("/api/products/new", upload.single("image"), (req, res) => {
-    console.log("POST sent to /api/products/new")
+app.post("/api/products/admin", upload.single("image"), (req, res) => {
+    console.log("POST sent to /api/products/admin")
     const {product_name, description, category, brand, sku, price, date} = req.body;
 
     const image = req.file.buffer;
