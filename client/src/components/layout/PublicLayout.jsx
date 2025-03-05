@@ -1,12 +1,14 @@
 import { Outlet } from "react-router";
-import Header from "../store/Header.jsx";
+import Header from "../store/header/Header.jsx";
 
 export default function PublicLayout() {
 
  return (
     <>
         <Header/>
-        <Outlet/>
+        <main className="bg-white">
+            <Outlet/>
+        </main>
     </>
  );
 }
