@@ -7,7 +7,9 @@ export default function PublicLayout() {
     <>
         <Header/>
         <main className="bg-white">
-            <Outlet/>
+            <div className="max-w-[1024px] mx-auto">
+                <Outlet/>
+            </div>
         </main>
     </>
  );

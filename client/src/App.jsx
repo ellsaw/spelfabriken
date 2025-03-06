@@ -5,9 +5,8 @@ import Products from './components/admin/Products.jsx';
 import NewProduct from './components/admin/NewProduct.jsx';
 import AdminLayout from './components/layout/AdminLayout.jsx'
 
-import Home from './components/store/Home.jsx';
+import Home from './components/store/home/Home.jsx';
 import PublicLayout from './components/layout/PublicLayout.jsx';
-import { useEffect } from 'react';
 
 export default function App() {
   return (
