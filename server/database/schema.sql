@@ -8,6 +8,7 @@ CREATE TABLE products(
     sku TEXT NOT NULL UNIQUE,
     img BLOB NOT NULL,
     price REAL NOT NULL,
+    campaign_price REAL,
     date TEXT NOT NULL,
     slug TEXT NOT NULL UNIQUE 
     );

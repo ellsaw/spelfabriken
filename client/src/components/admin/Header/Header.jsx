@@ -8,6 +8,7 @@ export default function Header() {
             <nav className="flex gap-golden-md">
             <NavLink label="Produkter" to="/admin/products"/>
             <NavLink label="Ny produkt" to="/admin/products/new"/>
+            <NavLink label="Kampanjer" to="/admin/products/campaigns"/>
             </nav>
         </div>
     </header>
