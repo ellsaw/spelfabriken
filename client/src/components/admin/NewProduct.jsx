@@ -8,6 +8,7 @@ export default function NewProduct() {
         [
             {value: "Spel till Xbox"},
             {value: "Spel till Playstation"},
+            {value: "Spel till Nintendo"},
             {value: "Spel till PC"},
             {value: "Retrospel"},
             {value: "Kort- & Brädspel"}

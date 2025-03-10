@@ -33,7 +33,7 @@ export default function Kampanjer() {
               <tbody className="[&_td]:py-golden-lg font-medium">
                  {
                  products.map((product) => (
-                  <CampaignTableRow key={product.id} id={product.id} product={product.product_name} brand={product.brand} category={product.brand} campaignPrice={product.campaign_price} price={product.price} fetchProducts={fetchProducts}/>
+                  <CampaignTableRow key={product.id} id={product.id} product={product.product_name} brand={product.brand} category={product.category} campaignPrice={product.campaign_price} price={product.price} fetchProducts={fetchProducts}/>
                  ))}
               </tbody>
            </table> 
