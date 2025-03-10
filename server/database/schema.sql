@@ -3,7 +3,7 @@ CREATE TABLE products(
     product_name TEXT NOT NULL,
     description TEXT NOT NULL,
     category TEXT NOT NULL,
-    category_slug TEXT NOT NULL UNIQUE,
+    category_slug TEXT NOT NULL,
     brand TEXT NOT NULL,
     sku TEXT NOT NULL UNIQUE,
     img BLOB NOT NULL,
