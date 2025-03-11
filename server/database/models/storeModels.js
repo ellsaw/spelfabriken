@@ -11,9 +11,11 @@ function dbGetForCampaignCarousel(){
             img,
             price,
             campaign_price,
-            slug
+            slug,
+            (price - campaign_price) AS discount
             FROM products
-            WHERE campaign_price > 0;
+            WHERE campaign_price > 0
+            ORDER BY discount DESC;
             `)
 
         const products = stmt.all()
