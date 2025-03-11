@@ -12,11 +12,11 @@ export default function CampaignTableRow({
 
     const [campaignValue, setCampaignValue] = useState(campaignPrice || null)
     
-    useEffect(() => {
-        if(!campaignValue) updateCampaign();
-    }, [campaignValue])
+     useEffect(() => {
+        if(!campaignValue && campaignPrice) updateCampaign();
+    }, [campaignValue]) 
     
-  function updateCampaign(event) {
+  function updateCampaign(event){
     if(event) event.preventDefault();
 
     fetch("/api/products/admin/campaigns", {
@@ -41,7 +41,7 @@ export default function CampaignTableRow({
   }
 
   return (
-    <tr className="even:bg-neutral-200 has-[.delete-button:hover]:text-red-700">
+    <tr className="even:bg-neutral-200">
       <td>{category}</td>
       <td>
         {brand} - {product}
@@ -66,7 +66,7 @@ export default function CampaignTableRow({
           <button
           type="reset"
           className={`bg-red-700 hover:bg-red-900 text-white px-golden-md py-golden-xs rounded-sm cursor-pointer ${!campaignValue && "invisible" }`} aria-label="Ta bort kampanj"
-          onClick={() => {setCampaignValue(null)}}
+          onClick={() => setCampaignValue(null)}
           >
             
             Ta bort
