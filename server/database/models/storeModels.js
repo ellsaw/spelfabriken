@@ -1,4 +1,5 @@
 import db from '../db.js'
+import bufferToImg from '../../utils/bufferToImg.js';
 
 function dbGetForCampaignCarousel(){
     try {
@@ -15,7 +16,14 @@ function dbGetForCampaignCarousel(){
             WHERE campaign_price > 0;
             `)
 
-        return stmt.all()
+        const products = stmt.all()
+
+        products.forEach(product => {
+            product.img = bufferToImg(product.img);
+        });
+
+        return products;
+
     } catch (error) {
         console.error(error.message);
         return error.message;
