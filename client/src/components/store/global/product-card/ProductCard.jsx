@@ -5,14 +5,22 @@ export default function ProductCard({ product, brand, img, price, campaignPrice,
 
  return (
    <Link className="" to={`/products/${slug}`}>
-    <article className="h-64 w-72 flex flex-col gap-golden-md py-golden-md px-golden-sm hover:[&_.title]:text-primary">
+    <article className="h-74 w-72 flex flex-col py-golden-md px-golden-sm hover:[&_.title]:text-primary relative">
+         {(1 - (campaignPrice / price) >= 0.33) && 
+            <div className="absolute size-18 bg-red-600 rounded-full outline-1 outline-red-500 border-2 border-white -left-3 -top-3 flex justify-center items-center -rotate-30 select-none">
+               <p className="text-2xl font-bold text-white">-{Math.ceil((1 - (campaignPrice / price)) * 100)}%</p>
+            </div>
+         }
          <div className="h-2/3">
             <img className="object-contain size-full" src={img} alt={product} />
          </div>
-         <div className="flex flex-col justify-between gap-golden-lg">
+         <div className="flex flex-col justify-between flex-1 mt-golden-sm">
+            <div>
             <p className="title leading-5 font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap">{product}</p>
+            <p className="text-neutral-500 leading-4">{brand}</p>
+            </div>
             <div className="flex justify-between">
-               <div>
+               <div className="flex flex-col justify-end">
                {campaignPrice ? 
                   <>
                   <p className="font-light line-through leading-1.5 text-neutral-500">{formatPrice(price)} kr</p>
