@@ -1,13 +1,9 @@
 import express from "express";
-import multer from 'multer';
-
-import { dbAdd, dbGetForAdmin, dbDelete, dbGetForCampaigns, dbSetCampaign } from "../database/db.js";
-
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage })
+import logger from 'morgan';
 
 const app = express();
 app.use(express.json());
+app.use(logger('dev'));
 
 const port = 8000;
 
@@ -15,70 +11,7 @@ app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
 
-app.post("/api/products/admin", upload.single("image"), (req, res) => {
-    console.log("POST recieved at /api/products/admin")
-    const {product_name, description, category, brand, sku, price, date} = req.body;
+import adminRouter from './routes/admin.js'
 
-    const image = req.file.buffer;
+app.use('/api/products/admin', adminRouter);
 
-    const response = dbAdd(product_name, description, category, brand, sku, image, price, date)
-
-    if (response) {
-        res.status(400).json({ error: response });
-    } else {
-        console.log("Request successful");
-        res.status(200).json({ success: true });
-    }
-})
-
-app.get("/api/products/admin", (req, res) => {
-    console.log("GET recieved at /api/products/admin")
-
-    const products = dbGetForAdmin();
-
-    if(products){
-        res.status(200).json(products)
-    } else {
-        res.status(500).json(null)
-    }
-})
-
-app.post("/api/products/admin/delete", (req, res) => {
-    console.log("POST recieved at /api/products/admin/delete")
-    const { id } = req.body;
-
-    const response = dbDelete(id);
-
-    if (response) {
-        res.status(400).json({ error: response });
-    } else {
-        console.log("Request successful");
-        res.status(200).json({ success: true });
-    }
-})
-
-app.get("/api/products/admin/campaigns", (req, res) => {
-    console.log("GET recieved at /api/products/admin/campaigns")
-
-    const products = dbGetForCampaigns();
-
-    if(products){
-        res.status(200).json(products)
-    } else {
-        res.status(500).json(null)
-    }
-})
-
-app.post("/api/products/admin/campaigns", (req, res) => {
-    console.log("POST recieved at /api/products/admin/campaigns")
-    const { id, campaignPrice } = req.body;
-
-    const response = dbSetCampaign(id, campaignPrice);
-
-    if (response) {
-        res.status(400).json({ error: response });
-    } else {
-        console.log("Request successful");
-        res.status(200).json({ success: true });
-    }
-})
