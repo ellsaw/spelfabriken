@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import formatPrice from "../../../utils/formatPrice.js";
 
 export default function CampaignTableRow({
   id,
@@ -47,7 +48,7 @@ export default function CampaignTableRow({
         {brand} - {product}
       </td>
       <td>
-        {new Intl.NumberFormat("sv-SE", { useGrouping: true }).format(price)} kr
+        {formatPrice(price)} kr
       </td>
       <td>
         <form

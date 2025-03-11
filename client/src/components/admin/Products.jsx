@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import formatPrice from "../../utils/formatPrice.js";
 
 export default function Products() {
    const [products, setProducts] = useState();
@@ -60,7 +61,7 @@ export default function Products() {
                <tr key={product.id} className="even:bg-neutral-200 has-[.delete-button:hover]:text-red-700">
                   <td>{product.category}</td>
                   <td>{product.brand} - {product.product_name}</td>
-                  <td>{new Intl.NumberFormat("sv-SE", { useGrouping: true }).format(product.price)} kr</td>
+                  <td>{formatPrice(product.price)} kr</td>
                   <td>{product.sku}</td>
                   <td className="flex gap-golden-sm justify-center">
                   <button className="cursor-pointer" aria-label="Redigera produkt">
