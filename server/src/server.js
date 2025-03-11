@@ -12,6 +12,8 @@ app.listen(port, () => {
 })
 
 import adminRouter from './routes/admin.js'
+import storeRouter from './routes/store.js'
 
 app.use('/api/products/admin', adminRouter);
+app.use('/api/products/store', storeRouter);
 
