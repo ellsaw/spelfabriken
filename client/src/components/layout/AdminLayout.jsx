@@ -6,7 +6,7 @@ export default function PublicLayout() {
  return (
     <>
     <title>Dashboard</title>
-    <div className="bg-white font-kanit min-h-[100dvh] flex flex-col">
+    <div className="bg-white font-kanit min-h-[100dvh] flex flex-col text-black">
     <Header/>
     <div className="flex justify-center flex-1">
     <main className="flex justify-center max-w-[640px] bg-pure-white flex-1 shadow-sm">
