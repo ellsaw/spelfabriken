@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductCard from "../../global/product-card/ProductCard.jsx";
-import ProductCardSkeleton from "../../global/product-card/ProductCardSkeleton.jsx";
+import {ProductCard, ProductCardSkeleton} from "../../global/ProductCard.jsx";
 
 export default function CampaignCarousel() {
 
