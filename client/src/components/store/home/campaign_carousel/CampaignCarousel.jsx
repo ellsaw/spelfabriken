@@ -1,23 +1,10 @@
-import { useEffect, useState } from "react";
 import {ProductCard, ProductCardSkeleton} from "../../global/ProductCard.jsx";
+import UseFetchProducts from "../../../../hooks/UseFetchProducts.jsx";
 
 export default function CampaignCarousel() {
 
-    const [products, setProducts] = useState();
+    const products = UseFetchProducts("/api/products/store/campaign-carousel")
 
-
-    function fetchProducts(){
-         fetch("/api/products/store/campaign-carousel")
-        .then((response) => response.json())
-        .then((data) => setProducts(data))
-        .catch(() => {
-           console.error("An error occured")
-        })
-     }
-
-    useEffect(() => {
-        fetchProducts();
-    }, [])
 
  return (
     <section className="mt-golden-xl">

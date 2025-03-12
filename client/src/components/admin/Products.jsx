@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
+import UseFetchProducts from "../../hooks/UseFetchProducts.jsx";
 import formatPrice from "../../utils/formatPrice.js";
 
 export default function Products() {
-   const [products, setProducts] = useState();
+   const products = UseFetchProducts("/api/products/admin")
 
-   function fetchProducts(){
-      fetch("/api/products/admin")
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch(() => {
-         console.error("An error occured")
-      })
-   }
    function deleteProduct(id, product_name, brand){
       if(!confirm(`Är du säker på att du vill ta bort ${brand} - ${product_name}?\nDetta kan inte ångras.`)) return;
 
@@ -36,11 +28,6 @@ export default function Products() {
       })
 
    }
-   
-   useEffect(() => {
-      fetchProducts();
-   }, [])
-
    
  return (
    <div className="w-full">

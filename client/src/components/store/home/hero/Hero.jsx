@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import HeroItem from "./HeroItem.jsx";
 import HeroNavButton from "./HeroNavButton.jsx";
+import UseWindowWidth from "../../../../hooks/useWindowWidth.jsx";
 
 export default function Hero() {
     const transitionDurationMS = 150;
@@ -13,8 +14,10 @@ export default function Hero() {
 
     const heroTrackRef = useRef(null)
 
-    window.addEventListener("resize", () => {
-        
+    const windowWidth = UseWindowWidth();
+
+
+    useEffect(() => {
         const numberOfHeroItems = heroTrackRef.current.children.length;
         const itemWidth = heroTrackRef.current.firstChild.clientWidth;
         const maxWidth = itemWidth * (numberOfHeroItems - 1)
@@ -25,8 +28,7 @@ export default function Hero() {
         const snap = Math.min(Math.min(Math.max(closestWidth, 0), maxWidth))
 
         moveCarousel(heroTrackRef.current, snap)
-
-    })
+    }, [windowWidth])
 
     function moveCarousel(track, amount, customDurationMS){
         track.classList.add("transition-transform", `duration-${customDurationMS || transitionDurationMS}`)

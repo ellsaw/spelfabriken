@@ -1,21 +1,13 @@
-import { useState, useEffect } from "react";
 import CampaignTableRow from "./CampaignTableRow.jsx";
+import UseFetchProducts from "../../../hooks/UseFetchProducts.jsx";
 
 export default function Kampanjer() {
-       const [products, setProducts] = useState();
-    
+      let products;
        function fetchProducts(){
-          fetch("/api/products/admin/campaigns")
-          .then((response) => response.json())
-          .then((data) => setProducts(data))
-          .catch(() => {
-             console.error("An error occured")
-          })
+         products = UseFetchProducts("/api/products/admin/campaigns")
        }
 
-        useEffect(() => {
-            fetchProducts();
-        }, [])
+       fetchProducts();
         
     return (
         <div className="w-full">
