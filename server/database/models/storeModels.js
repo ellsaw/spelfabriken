@@ -11,11 +11,10 @@ function dbGetForCampaignCarousel(){
             img,
             price,
             campaign_price,
-            slug,
-            (price - campaign_price) AS discount
+            slug
             FROM products
             WHERE campaign_price > 0
-            ORDER BY discount DESC;
+            ORDER BY (price - campaign_price) DESC;
             `)
 
         const products = stmt.all()
@@ -32,4 +31,55 @@ function dbGetForCampaignCarousel(){
     }
 }
 
-export { dbGetForCampaignCarousel }
+function dbGetForProductShowcase(type){
+    try {
+        let stmt;
+
+        if(type === "bestsellers"){
+            stmt = db.prepare(`
+                SELECT
+                id,
+                product_name,
+                brand,
+                img,
+                price,
+                campaign_price,
+                slug
+                FROM products
+                ORDER BY price DESC
+                LIMIT 5;
+                `)
+
+        }else if(type === "recent"){
+            stmt = db.prepare(`
+                SELECT
+                id,
+                product_name,
+                brand,
+                img,
+                price,
+                campaign_price,
+                slug
+                FROM products
+                ORDER BY id DESC;
+                LIMIT 5;
+                `)
+        }else{
+            throw new Error("Invalid type")
+        }
+
+        const products = stmt.all()
+
+        products.forEach(product => {
+            product.img = bufferToImg(product.img);
+        });
+
+        return products;
+
+    } catch (error) {
+        console.error(error.message);
+        return error.message;
+    }
+}
+
+export { dbGetForCampaignCarousel, dbGetForProductShowcase }
