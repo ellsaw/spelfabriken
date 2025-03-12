@@ -61,7 +61,7 @@ function dbGetForProductShowcase(type){
                 campaign_price,
                 slug
                 FROM products
-                ORDER BY id DESC;
+                ORDER BY id DESC
                 LIMIT 5;
                 `)
         }else{
