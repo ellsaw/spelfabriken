@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import HeroItem from "./HeroItem.jsx";
 import HeroNavButton from "./HeroNavButton.jsx";
 
@@ -11,19 +11,20 @@ export default function Hero() {
 
     const [intervalPaused, setIntervalPaused] = useState(false);
 
+    const heroTrackRef = useRef(null)
+
     window.addEventListener("resize", () => {
         
-        const heroTrack = document.getElementById("hero-track");
-        const numberOfHeroItems = heroTrack.children.length;
-        const itemWidth = heroTrack.firstChild.clientWidth;
+        const numberOfHeroItems = heroTrackRef.current.children.length;
+        const itemWidth = heroTrackRef.current.firstChild.clientWidth;
         const maxWidth = itemWidth * (numberOfHeroItems - 1)
-        const initialTranslate = parseInt(heroTrack.style.transform.replace(/\D/g, ""), 10) || 0;
+        const initialTranslate = parseInt(heroTrackRef.current.style.transform.replace(/\D/g, ""), 10) || 0;
 
         const closestWidth = (Math.round((initialTranslate) / itemWidth) * itemWidth)
 
         const snap = Math.min(Math.min(Math.max(closestWidth, 0), maxWidth))
 
-        moveCarousel(heroTrack, snap)
+        moveCarousel(heroTrackRef.current, snap)
 
     })
 
@@ -40,8 +41,7 @@ export default function Hero() {
         
         if(intervalPaused) return;
 
-        const heroTrack = document.getElementById("hero-track");
-        const numberOfHeroItems = heroTrack.children.length;
+        const numberOfHeroItems = heroTrackRef.current.children.length;
 
         const interval = setInterval(() => {
             setCurrentSlide((cs) => {
@@ -60,32 +60,30 @@ export default function Hero() {
 
 
     useEffect(() => {
-        const heroTrack = document.getElementById("hero-track");
-        const itemWidth = heroTrack.firstChild.clientWidth;
+        const itemWidth = heroTrackRef.current.firstChild.clientWidth;
 
-        moveCarousel(heroTrack, currentSlide * itemWidth, 300);
+        moveCarousel(heroTrackRef.current, currentSlide * itemWidth, 300);
 
     }, [currentSlide])
 
 
     function handleHeroCarousel(event) {
-        const heroTrack = document.getElementById("hero-track");
-        const numberOfHeroItems = heroTrack.children.length;
-        const itemWidth = heroTrack.firstChild.clientWidth;
+        const numberOfHeroItems = heroTrackRef.current.children.length;
+        const itemWidth = heroTrackRef.current.firstChild.clientWidth;
         const maxWidth = itemWidth * (numberOfHeroItems - 1)
 
         const initialMouseX = (event.clientX || event.touches[0].clientX);
 
-        const initialTranslate = parseInt(heroTrack.style.transform.replace(/\D/g, ""), 10) || 0;
+        const initialTranslate = parseInt(heroTrackRef.current.style.transform.replace(/\D/g, ""), 10) || 0;
 
         let deltaMouseX = 0;
         function moveHandler(moveEvent) {
             deltaMouseX = initialMouseX - (moveEvent.clientX || moveEvent.touches[0].clientX);
 
             if((initialTranslate + deltaMouseX) >= maxWidth){
-                heroTrack.style.transform = `translateX(-${maxWidth}px)`;
+                heroTrackRef.current.style.transform = `translateX(-${maxWidth}px)`;
             } else{
-                heroTrack.style.transform = `translateX(-${initialTranslate + deltaMouseX}px)`;
+                heroTrackRef.current.style.transform = `translateX(-${initialTranslate + deltaMouseX}px)`;
             }
             
         }
@@ -110,7 +108,7 @@ export default function Hero() {
     }
  return (
     <section className="overflow-hidden relative" onMouseEnter={handleInterval} onMouseLeave={handleInterval} onTouchStart={handleInterval} onTouchEnd={handleInterval}>
-        <div id="hero-track" className="h-[28rem] flex w-fit relative" onMouseDown={(event) => handleHeroCarousel(event)} onTouchStart={(event) => handleHeroCarousel(event)}>
+        <div ref={heroTrackRef} className="h-[28rem] flex w-fit relative" onMouseDown={(event) => handleHeroCarousel(event)} onTouchStart={(event) => handleHeroCarousel(event)}>
             <HeroItem img="./src/assets/images/hero/nvidia-5000-series.avif" text="NVIDIA GeForce RTX 5070" buttonlabel="Shoppa nu" href="/" invisibleText={false}/>
             <HeroItem img="./src/assets/images/hero/nintendo-switch-2.avif" text="Nintendo Switch 2" buttonlabel="Shoppa nu" href="/" invisibleText={true}/>
             <HeroItem img="./src/assets/images/hero/assassins-creed-shadows.avif" text="Assassin's Creed Shadows" buttonlabel="Shoppa nu" href="/" invisibleText={true}/>

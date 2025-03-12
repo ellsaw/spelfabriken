@@ -1,32 +1,32 @@
 import { Link } from "react-router";
 import NavSubItem from "./NavSubItem.jsx";
+import { useRef } from "react";
 
 export default function NavItem({ label }) {
 
+    const parentRef = useRef(null)
+    const targetRef = useRef(null)
+
     function dropdownHandler(event){
-        const parent = event.target.closest(".dropdown-parent");
-
-        const target = parent.querySelector(".dropdown");
-
         const initialMouseX = event.clientX;
         const initialMouseY = event.clientY;
 
-        target.classList.remove("hidden");
+        targetRef.current.classList.remove("hidden");
 
         setTimeout(() => {
-            target.classList.remove("scale-y-0")
+            targetRef.current.classList.remove("scale-y-0")
         }, 1);
  
         const leaveHandler = () => {
 
-            target.removeEventListener("mouseleave", leaveHandler)
+            targetRef.current.removeEventListener("mouseleave", leaveHandler)
 
             window.removeEventListener("mousemove", moveCheck)
 
-            target.classList.add("scale-y-0");
+            targetRef.current.classList.add("scale-y-0");
 
             setTimeout(() => {
-                target.classList.add("hidden");
+                targetRef.current.classList.add("hidden");
             }, 150);
         }
 
@@ -37,7 +37,7 @@ export default function NavItem({ label }) {
             const deltaX = mouseX - initialMouseX
             const deltaY = mouseY - initialMouseY
 
-            if((-deltaY >= parent.clientHeight) || (Math.abs(deltaX) > (parent.clientWidth / 2))){
+            if((-deltaY >= parentRef.current.clientHeight) || (Math.abs(deltaX) > (parentRef.current.clientWidth / 2))){
                 leaveHandler();
             }
 
@@ -45,14 +45,14 @@ export default function NavItem({ label }) {
 
        window.addEventListener("mousemove", moveCheck) 
 
-       target.addEventListener("mouseleave", leaveHandler)
+       targetRef.current.addEventListener("mouseleave", leaveHandler)
 
     }
 
   return (
-    <div className="dropdown-parent flex-1 flex justify-center relative" onMouseEnter={(event) => dropdownHandler(event)}>
+    <div ref={parentRef} className="flex-1 flex justify-center relative" onMouseEnter={(event) => dropdownHandler(event)}>
       <Link className="">{label}</Link>
-      <div className="dropdown hidden absolute z-20 bg-black top-8 font-normal rounded-b-lg scale-y-0 origin-top transition-transform duration-150">
+      <div ref={targetRef} className="hidden absolute z-20 bg-black top-8 font-normal rounded-b-lg scale-y-0 origin-top transition-transform duration-150">
         <nav className="flex flex-col min-w-40 max-w-fit gap-golden-sm py-golden-md px-golden-md">
           {label === "Spel" ? (
             <>
