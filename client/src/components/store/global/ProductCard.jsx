@@ -16,7 +16,7 @@ function ProductCard({ product, brand, img, price, campaignPrice, slug }) {
          </div>
          <div className="flex flex-col justify-between flex-1 mt-golden-sm">
             <div>
-            <p className="title leading-5 font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap">{product}</p>
+            <h3 className="title leading-5 font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap">{product}</h3>
             <p className="text-neutral-500 leading-4">{brand}</p>
             </div>
             <div className="flex justify-between">

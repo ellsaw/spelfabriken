@@ -11,7 +11,7 @@ function ProductListItem({ product, brand, img, price, campaignPrice, slug }) {
                     <img className="object-contain size-full" src={img} alt={product} />
                 </div>
                 <div>
-                    <p className="title line-clamp-2 overflow-ellipsis font-medium leading-4">{product}</p>
+                    <h3 className="title line-clamp-2 overflow-ellipsis font-medium leading-4">{product}</h3>
                     <p className="text-neutral-500 leading-6">{brand}</p>
                 </div>
             </div>
