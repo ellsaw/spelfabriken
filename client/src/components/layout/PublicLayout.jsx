@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import Header from "../store/header/Header.jsx";
+import Footer from "../store/footer/footer.jsx";
 
 export default function PublicLayout() {
 
@@ -11,6 +12,7 @@ export default function PublicLayout() {
                 <Outlet/>
             </div>
         </main>
+        <Footer/>
     </>
  );
 }
