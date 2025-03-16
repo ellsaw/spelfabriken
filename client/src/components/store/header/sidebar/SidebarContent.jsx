@@ -15,7 +15,7 @@ export default function SidebarContent({ close }) {
 
   return (
     <>
-      <div className="flex [&_button]:h-12 *:flex *:items-center py-golden-lg px-golden-md bg-primary text-white border-b-2 border-border">
+      <div className="flex [&_button]:h-12 *:flex *:items-center py-golden-lg px-golden-md bg-black text-white border-b-4 border-primary">
         <div className="flex-1 justify-normal">
           {!path ? (
             <h2 className="font-bold pl-golden-md tracking-wide">Huvudmeny</h2>

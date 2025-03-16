@@ -73,7 +73,7 @@ export default function Header() {
                 />
               </svg>
             </button>
-            <button className="h-10 lg:hidden" aria-label="Sidebar" onClick={toggleSidebar}>
+            <button className="h-10 lg:hidden cursor-pointer" aria-label="Sidebar" onClick={toggleSidebar}>
               <svg
                 className="fill-white"
                 xmlns="http://www.w3.org/2000/svg"
