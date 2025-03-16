@@ -1,18 +1,56 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SearchInput from "./SearchInput.jsx";
 import LowerNav from "./lower-nav/LowerNav.jsx";
 import Sidebar from "./sidebar/Sidebar.jsx";
 
 export default function Header() {
   const [ showSidebar, setShowSidebar ] = useState(false);
+  const headerRef = useRef(null);
 
   function toggleSidebar(){
     setShowSidebar(!showSidebar);
   }
 
+
+  function initalScrollHandler(event){
+
+    const initialScroll = window.scrollY;
+
+    function scrollHandler(){
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > initialScroll) {
+        headerRef.current.classList.remove("top-0")
+        headerRef.current.classList.add("-top-28")
+
+        setTimeout(() => {
+          headerRef.current.classList.remove("sticky")
+        }, 150);
+      } else if (currentScrollY < initialScroll) {
+        headerRef.current.classList.add("sticky")
+
+        setTimeout(() => {
+          headerRef.current.classList.remove("-top-28")
+          headerRef.current.classList.add("top-0")
+        }, 1);
+      }
+
+      document.removeEventListener("scroll", scrollHandler)
+    }
+    document.addEventListener("scroll", scrollHandler)
+  }
+
+  useEffect(() => {
+    document.addEventListener("scroll", initalScrollHandler)
+
+    return () => {
+      document.removeEventListener("scroll", initalScrollHandler)
+    }
+  }, [])
+
   return (
     <>
-    <header className="bg-black text-white px-golden-md border-b-4 border-primary">
+    <header ref={headerRef} className="bg-black text-white px-golden-md border-b-4 border-primary -top-28 z-30 transition-all duration-300">
       <div className="max-w-[1024px] mx-auto">
         <div className="flex justify-between items-center py-golden-md">
           <h1 className="text-lg font-medium">LOGO</h1>
