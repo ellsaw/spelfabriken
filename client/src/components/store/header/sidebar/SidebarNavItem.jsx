@@ -20,7 +20,7 @@ export default function SidebarNavItem({type, label, href}) {
         </svg>
         </button>
         : 
-        <Link to={href}><span>{label}</span><svg
+        <Link to={`/kategori${href}`}><span>{label}</span><svg
           xmlns="http://www.w3.org/2000/svg"
           width="1.5rem"
           height="1.5rem"

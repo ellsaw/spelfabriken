@@ -1,9 +1,14 @@
 import { useEffect, useRef} from "react";
 import SidebarContent from "./SidebarContent.jsx";
+import { useLocation } from "react-router";
 
 export default function Sidebar({ toggleSidebar }) {
   const sidebarRef = useRef(null);
   const overlayRef = useRef(null)
+  
+  const location = useLocation();
+
+  const prevLocation = useRef(location.pathname);
 
     const handleSidebar = {
         initialize(){
@@ -27,6 +32,14 @@ export default function Sidebar({ toggleSidebar }) {
             }, 150);
         }
     }
+
+    useEffect(() => {
+      if (location.pathname !== prevLocation.current) {
+        prevLocation.current = location.pathname;
+
+        handleSidebar.close();
+      }
+    }, [location])
     
     useEffect(() => {
         handleSidebar.initialize();

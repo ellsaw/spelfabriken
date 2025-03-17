@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function NavSubItem({label, href}) {
  return (
-    <Link to={href} className="flex items-center gap-golden-md justify-between py-golden-md hover:bg-black-20s-13l px-golden-lg rounded-sm"><span>{label}</span><svg
+    <Link to={`/kategori${href}`} className="flex items-center gap-golden-md justify-between py-golden-md hover:bg-black-20s-13l px-golden-lg rounded-sm"><span>{label}</span><svg
           xmlns="http://www.w3.org/2000/svg"
           width="1rem"
           height="1rem"

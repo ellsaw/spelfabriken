@@ -1,17 +1,22 @@
 import { useNavigate, useParams } from "react-router";
 import UseFetchProducts from "../../../hooks/UseFetchProducts";
 import { ProductCard, ProductCardSkeleton } from "../global/ProductCard";
+import { useEffect } from "react";
 
 export default function Category() {
    const navigate = useNavigate();
 
   const { category } = useParams();
 
-  const { products } = UseFetchProducts(`/api/products/store/category/${category}`)
+  const { products, refetch } = UseFetchProducts(`/api/products/store/category/${category}`)
 
   if(products === "Invalid Category"){
    navigate('/')
   }
+
+  useEffect(() => {
+   refetch();
+  }, [category])
 
   return (
     <section className="min-h-screen">

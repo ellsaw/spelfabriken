@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SidebarNavItem from "./SidebarNavItem.jsx";
+import { Link } from "react-router";
 
 export default function SidebarContent({ close }) {
   const [path, setPath] = useState(null);
@@ -59,46 +60,51 @@ export default function SidebarContent({ close }) {
             </>
             : path === "Spel" ? 
             <>
-              <SidebarNavItem type="link" href="/" label="Xbox"/>
-              <SidebarNavItem type="link" href="/" label="Playstation"/>
-              <SidebarNavItem type="link" href="/" label="Nintendo"/>
-              <SidebarNavItem type="link" href="/" label="Spel till PC"/>
-              <SidebarNavItem type="link" href="/" label="Retro"/>
-              <SidebarNavItem type="link" href="/" label="Kort & Brädspel"/>
+              <SidebarNavItem type="link" href="/spel-till-xbox" label="Xbox"/>
+              <SidebarNavItem type="link" href="/spel-till-playstation" label="Playstation"/>
+              <SidebarNavItem type="link" href="/spel-till-nintendo" label="Nintendo"/>
+              <SidebarNavItem type="link" href="/spel-till-pc" label="Spel till PC"/>
+              <SidebarNavItem type="link" href="/retrospel" label="Retro"/>
+              <SidebarNavItem type="link" href="/kort-and-bradspel" label="Kort & Brädspel"/>
+              <Link className="font-normal outline-1 outline-black justify-center! py-golden-md!" to="/kategori/spel">Alla Spel</Link>
             </>
             : path === "Konsoller" ?
             <>
-              <SidebarNavItem type="link" href="/" label="Xbox"/>
-              <SidebarNavItem type="link" href="/" label="Playstation"/>
-              <SidebarNavItem type="link" href="/" label="Nintendo"/>
-              <SidebarNavItem type="link" href="/" label="Retro"/>
+              <SidebarNavItem type="link" href="/xbox" label="Xbox"/>
+              <SidebarNavItem type="link" href="/playstation" label="Playstation"/>
+              <SidebarNavItem type="link" href="/nintendo" label="Nintendo"/>
+              <SidebarNavItem type="link" href="/retro" label="Retro"/>
+              <Link className="font-normal outline-1 outline-black justify-center! py-golden-md!" to="/kategori/konsoller">Alla Konsoller</Link>
             </>
             : path === "PC" ? 
             <>
-             <SidebarNavItem type="link" href="/" label="Kompletta Datorer"/> 
-             <SidebarNavItem type="link" href="/" label="Processorer / CPU"/> 
-             <SidebarNavItem type="link" href="/" label="Grafikkort / GPU"/> 
-             <SidebarNavItem type="link" href="/" label="Moderkort"/> 
-             <SidebarNavItem type="link" href="/" label="Lagring"/> 
-             <SidebarNavItem type="link" href="/" label="Minne / RAM"/> 
-             <SidebarNavItem type="link" href="/" label="Chassi"/> 
-             <SidebarNavItem type="link" href="/" label="Näraggregat / PSU"/> 
-             <SidebarNavItem type="link" href="/" label="Övrigt"/> 
+             <SidebarNavItem type="link" href="/kompletta-datorer" label="Kompletta Datorer"/> 
+             <SidebarNavItem type="link" href="/processorer-cpu" label="Processorer / CPU"/> 
+             <SidebarNavItem type="link" href="/grafikkort-gpu" label="Grafikkort / GPU"/> 
+             <SidebarNavItem type="link" href="/moderkort" label="Moderkort"/> 
+             <SidebarNavItem type="link" href="/lagring" label="Lagring"/> 
+             <SidebarNavItem type="link" href="/minne-ram" label="Minne / RAM"/> 
+             <SidebarNavItem type="link" href="/chassi" label="Chassi"/> 
+             <SidebarNavItem type="link" href="/nataggregat-psu" label="Nätaggregat / PSU"/> 
+             <SidebarNavItem type="link" href="/ovrigt" label="Övrigt"/>
+             <Link className="font-normal outline-1 outline-black justify-center! py-golden-md!" to="/kategori/pc">Allt om PC</Link> 
             </>
             : path === "TV, Ljud & Bild" ?
             <>
-              <SidebarNavItem type="link" href="/" label="TV"/> 
-              <SidebarNavItem type="link" href="/" label="Bildskärmar"/> 
-              <SidebarNavItem type="link" href="/" label="Hörlurar"/> 
-              <SidebarNavItem type="link" href="/" label="Headsets"/> 
-              <SidebarNavItem type="link" href="/" label="Kablar & Kontakter"/> 
+              <SidebarNavItem type="link" href="/tv" label="TV"/> 
+              <SidebarNavItem type="link" href="/bildskarmar" label="Bildskärmar"/> 
+              <SidebarNavItem type="link" href="/horlurar" label="Hörlurar"/> 
+              <SidebarNavItem type="link" href="/headsets" label="Headsets"/> 
+              <SidebarNavItem type="link" href="/kablar-and-kontakter" label="Kablar & Kontakter"/> 
+              <Link className="font-normal outline-1 outline-black justify-center! py-golden-md!" to="/kategori/tv-ljud-and-bild">Allt om TV, Ljud & Bild</Link> 
             </>
             : path === "Hobby" ?
             <>
-              <SidebarNavItem type="link" href="/" label="LEGO"/> 
-              <SidebarNavItem type="link" href="/" label="Samlarkort"/> 
-              <SidebarNavItem type="link" href="/" label="Samlarprylar"/> 
-              <SidebarNavItem type="link" href="/" label="Leksaker"/> 
+              <SidebarNavItem type="link" href="/lego" label="LEGO"/> 
+              <SidebarNavItem type="link" href="/samlarkort" label="Samlarkort"/> 
+              <SidebarNavItem type="link" href="/samlarprylar" label="Samlarprylar"/> 
+              <SidebarNavItem type="link" href="/leksaker" label="Leksaker"/> 
+              <Link className="font-normal outline-1 outline-black justify-center! py-golden-md!" to="/kategori/hobby">Allt om Hobby</Link> 
             </>
             : null
             } 
