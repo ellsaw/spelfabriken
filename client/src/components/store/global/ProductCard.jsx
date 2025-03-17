@@ -11,7 +11,7 @@ function ProductCard({ product, brand, img, price, campaignPrice, slug }) {
                <p className="text-2xl font-bold text-white">-{Math.ceil((1 - (campaignPrice / price)) * 100)}%</p>
             </div>
          }
-         <div className="aspect-video h-3/5">
+         <div className="aspect-video h-1/2">
             <img className="object-contain size-full" src={img} alt={product} />
          </div>
          <div className="flex flex-col justify-between flex-1 mt-golden-sm">

@@ -7,6 +7,7 @@ import Campaigns from './components/admin/campaigns/Campaigns.jsx';
 import AdminLayout from './components/layout/AdminLayout.jsx'
 
 import Home from './components/store/home/Home.jsx';
+import Categories from './components/store/categories/Categories.jsx';
 import PublicLayout from './components/layout/PublicLayout.jsx';
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
         <Routes>
             <Route element={<PublicLayout/>}>
               <Route index element={<Home/>}/>
+              <Route path='/kategori/:category' element={<Categories/>}/>
             </Route>
 
             <Route element={<AdminLayout/>}>

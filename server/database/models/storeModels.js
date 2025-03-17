@@ -89,6 +89,8 @@ function dbGetForCategory(category){
             id,
             product_name,
             brand,
+            supercategory,
+            category,
             img,
             price,
             campaign_price,
@@ -99,6 +101,10 @@ function dbGetForCategory(category){
             `)
 
         const products = stmt.all(category, category)
+
+        if(products.length === 0){
+            throw new Error("Invalid Category")
+        }
 
         products.forEach(product => {
             product.img = bufferToImg(product.img);

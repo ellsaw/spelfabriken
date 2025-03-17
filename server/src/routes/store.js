@@ -34,7 +34,7 @@ router.get("/category/:category", (req, res) => {
     if(products){
         res.status(200).json(products)
     } else {
-        res.status(500).json(null)
+        res.status(500).json(products)
     }
 })
 
