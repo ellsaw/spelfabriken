@@ -13,7 +13,9 @@ export default function CampaignCarousel() {
             <div className="flex gap-golden-xl relative w-fit py-golden-lg px-golden-lg">
             {products ?
                     products.map((product) => (
-                        <ProductCard key={product.id} product={product.product_name} brand={product.brand} img={product.img} price={product.price} campaignPrice={product.campaign_price} slug={product.slug}/>
+                        <div className="w-72">
+                            <ProductCard key={product.id} product={product.product_name} brand={product.brand} img={product.img} price={product.price} campaignPrice={product.campaign_price} slug={product.slug}/>
+                        </div>                                                                                                                                                                                         
                     ))
             : 
             <>
