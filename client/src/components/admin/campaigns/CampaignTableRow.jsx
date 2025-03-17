@@ -8,7 +8,7 @@ export default function CampaignTableRow({
   category,
   campaignPrice,
   price,
-  fetchProducts,
+  refetch,
 }) {
 
     const [campaignValue, setCampaignValue] = useState(campaignPrice || null)
@@ -30,7 +30,7 @@ export default function CampaignTableRow({
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          fetchProducts();
+          refetch();
         } else {
           console.error(data.error);
         }

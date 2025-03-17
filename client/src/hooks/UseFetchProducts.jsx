@@ -16,5 +16,5 @@ export default function UseFetchProducts(url) {
     fetchProducts();
   }, []);
 
-  return products;
+  return {products, refetch: fetchProducts};
 }

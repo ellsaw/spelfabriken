@@ -2,7 +2,8 @@ import UseFetchProducts from "../../hooks/UseFetchProducts.jsx";
 import formatPrice from "../../utils/formatPrice.js";
 
 export default function Products() {
-   const products = UseFetchProducts("/api/products/admin")
+
+   const {products, refetch} = UseFetchProducts("/api/products/admin")
 
    function deleteProduct(id, product_name, brand){
       if(!confirm(`Är du säker på att du vill ta bort ${brand} - ${product_name}?\nDetta kan inte ångras.`)) return;
@@ -17,7 +18,7 @@ export default function Products() {
       .then((response) => response.json())
       .then((data) => {
           if (data.success){
-              fetchProducts()
+            refetch()
           }
           else{
               console.error(data.error)

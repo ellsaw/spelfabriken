@@ -3,7 +3,7 @@ import UseFetchProducts from "../../../../hooks/UseFetchProducts.jsx";
 
 export default function CampaignCarousel() {
 
-    const products = UseFetchProducts("/api/products/store/campaign-carousel")
+    const { products } = UseFetchProducts("/api/products/store/campaign-carousel")
 
 
  return (

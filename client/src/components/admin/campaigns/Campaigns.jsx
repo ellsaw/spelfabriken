@@ -2,12 +2,8 @@ import CampaignTableRow from "./CampaignTableRow.jsx";
 import UseFetchProducts from "../../../hooks/UseFetchProducts.jsx";
 
 export default function Kampanjer() {
-      let products;
-       function fetchProducts(){
-         products = UseFetchProducts("/api/products/admin/campaigns")
-       }
 
-       fetchProducts();
+   const { products, refetch } = UseFetchProducts("/api/products/admin/campaigns")
         
     return (
         <div className="w-full">
@@ -25,7 +21,7 @@ export default function Kampanjer() {
               <tbody className="[&_td]:py-golden-lg font-medium">
                  {
                  products.map((product) => (
-                  <CampaignTableRow key={product.id} id={product.id} product={product.product_name} brand={product.brand} category={product.category} campaignPrice={product.campaign_price} price={product.price} fetchProducts={fetchProducts}/>
+                  <CampaignTableRow key={product.id} id={product.id} product={product.product_name} brand={product.brand} category={product.category} campaignPrice={product.campaign_price} price={product.price} refetch={refetch}/>
                  ))}
               </tbody>
            </table> 

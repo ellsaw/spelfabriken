@@ -93,8 +93,8 @@ export default function NewProduct() {
                 <textarea className="outline-1 outline-border rounded-sm px-golden-md py-golden-sm" name="description" id="description" required></textarea>
             </div>
             <div>
-                <label htmlFor="super-category" className="font-medium">Kategori</label>
-                <select className="outline-1 outline-border rounded-sm px-golden-sm py-golden-sm" id="super-category" onChange={(event) => formHandler.superCategory(event)}>
+                <label htmlFor="superCategory" className="font-medium">Kategori</label>
+                <select className="outline-1 outline-border rounded-sm px-golden-sm py-golden-sm" id="superCategory" name="superCategory" onChange={(event) => formHandler.superCategory(event)}>
                     <option value="0">Spel</option>
                     <option value="1">Konsoller</option>
                     <option value="2">PC</option>

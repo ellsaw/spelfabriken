@@ -8,14 +8,14 @@ export const ProductContext = createContext(null);
 export default function ProductShowcaseContainer() {
     const windowWidth = UseWindowWidth()
 
-    const products = {
-        bestsellers: UseFetchProducts("/api/products/store/product-showcase/bestsellers"),
-        recent: UseFetchProducts("/api/products/store/product-showcase/recent")
-    }
+    const { products: bestsellers } = UseFetchProducts("/api/products/store/product-showcase/bestsellers");
+    const { products: recent } = UseFetchProducts("/api/products/store/product-showcase/recent");
 
+
+    const productObject = { bestsellers, recent };
 
  return (
-    <ProductContext.Provider value={products}>
+    <ProductContext.Provider value={productObject}>
         {windowWidth >= 768 ? 
             <ProductShowcase/>
         :
