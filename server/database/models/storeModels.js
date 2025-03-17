@@ -82,4 +82,34 @@ function dbGetForProductShowcase(type){
     }
 }
 
-export { dbGetForCampaignCarousel, dbGetForProductShowcase }
+function dbGetForCategory(category){
+    try {
+        const stmt = db.prepare(`
+            SELECT
+            id,
+            product_name,
+            brand,
+            img,
+            price,
+            campaign_price,
+            slug
+            FROM products
+            WHERE category_slug = ? OR supercategory_slug = ?
+            ORDER BY id DESC;
+            `)
+
+        const products = stmt.all(category, category)
+
+        products.forEach(product => {
+            product.img = bufferToImg(product.img);
+        });
+
+        return products;
+
+    } catch (error) {
+        console.error(error.message);
+        return error.message;
+    }
+}
+
+export { dbGetForCampaignCarousel, dbGetForProductShowcase, dbGetForCategory }
