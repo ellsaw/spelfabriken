@@ -2,6 +2,8 @@ CREATE TABLE products(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     product_name TEXT NOT NULL,
     description TEXT NOT NULL,
+    supercategory TEXT NOT NULL,
+    supercategory_slug TEXT NOT NULL,
     category TEXT NOT NULL,
     category_slug TEXT NOT NULL,
     brand TEXT NOT NULL,
