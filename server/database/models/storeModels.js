@@ -190,5 +190,35 @@ function dbGetForSearch(query){
     }
 }
 
-dbGetForSearch("Kort")
-export { dbGetForCampaignCarousel, dbGetForProductShowcase, dbGetForCategory, dbGetForSearch }
+function dbGetForProductDetails(slug){
+    try {
+        const stmt = db.prepare(`
+            SELECT
+            id,
+            product_name,
+            brand,
+            supercategory,
+            supercategory_slug,
+            category,
+            category_slug,
+            img,
+            price,
+            campaign_price
+            FROM products
+            WHERE slug = ?;            
+            `);
+        const product = stmt.get(slug);
+
+        if(product) product.img = bufferToImg(product.img);
+
+        return {product: product, error: null};
+        
+    } catch (e) {
+        const error = e.message;
+
+        console.error(error);
+
+        return {product: null, error: error}
+    }
+}
+export { dbGetForCampaignCarousel, dbGetForProductShowcase, dbGetForCategory, dbGetForSearch, dbGetForProductDetails }
