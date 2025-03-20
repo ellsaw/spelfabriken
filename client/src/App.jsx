@@ -8,6 +8,7 @@ import AdminLayout from './components/layout/AdminLayout.jsx'
 
 import Home from './components/store/home/Home.jsx';
 import Categories from './components/store/categories/Categories.jsx';
+import SearchResults from './components/store/search-results/SearchResults.jsx';
 import PublicLayout from './components/layout/PublicLayout.jsx';
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
             <Route element={<PublicLayout/>}>
               <Route index element={<Home/>}/>
               <Route path='/kategori/:category' element={<Categories/>}/>
+              <Route path='/hitta' element={<SearchResults/>}/>
             </Route>
 
             <Route element={<AdminLayout/>}>
