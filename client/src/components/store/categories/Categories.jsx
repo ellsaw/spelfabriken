@@ -15,7 +15,7 @@ export default function Category() {
   }
 
   useEffect(() => {
-   refetch();
+   if(products) refetch();
   }, [category])
 
   return (
