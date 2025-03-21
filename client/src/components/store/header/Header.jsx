@@ -21,7 +21,7 @@ export default function Header() {
 
       if (currentScrollY > initialScroll) {
         headerRef.current.classList.remove("top-0")
-        headerRef.current.classList.add("-top-28")
+        headerRef.current.classList.add("sm:-top-28", "-top-32")
 
         setTimeout(() => {
           headerRef.current.classList.remove("sticky")
@@ -30,7 +30,7 @@ export default function Header() {
         headerRef.current.classList.add("sticky")
 
         setTimeout(() => {
-          headerRef.current.classList.remove("-top-28")
+          headerRef.current.classList.remove("sm:-top-28", "-top-32")
           headerRef.current.classList.add("top-0")
         }, 1);
       }
@@ -50,7 +50,7 @@ export default function Header() {
 
   return (
     <>
-    <header ref={headerRef} className="bg-black text-white px-golden-md border-b-4 border-primary -top-28 z-30 transition-all duration-300">
+    <header ref={headerRef} className="bg-black text-white px-golden-md border-b-4 border-primary sm:-top-28 -top-32 z-30 transition-all duration-300">
       <div className="max-w-[1024px] mx-auto">
         <div className="flex justify-between items-center py-golden-md">
           <h1 className="text-lg font-medium">LOGO</h1>
