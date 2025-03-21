@@ -14,7 +14,7 @@ export default function Description( {description, product_name} ) {
         }
 
         useEffect(() => {
-            if(!description) return;
+            if(!description || !descriptionRef?.current) return;
 
             if(descriptionRef.current.scrollHeight > descriptionRef.current.clientHeight) setHideDescription(true);
         }, [description])
