@@ -4,7 +4,7 @@ import formatPrice from "../../../utils/formatPrice.js";
 function ProductCard({ product, brand, img, price, campaignPrice, slug }) {
 
  return (
-   <Link className="size-full" to={`/products/${slug}`}>
+   <Link className="size-full" to={`/produkt/${slug}`}>
     <article className="size-full flex flex-col py-golden-md px-golden-sm hover:[&_.title]:text-primary relative">
          {(campaignPrice && (1 - (campaignPrice / price) >= 0.33)) && 
             <div className="absolute size-18 bg-red-600 rounded-full outline-1 outline-red-500 border-2 border-white -left-3 -top-3 flex justify-center items-center -rotate-30 select-none">
@@ -19,7 +19,7 @@ function ProductCard({ product, brand, img, price, campaignPrice, slug }) {
             <h3 className="title leading-5 font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap">{product}</h3>
             <p className="text-neutral-500 leading-4">{brand}</p>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between mt-golden-md">
                <div className="flex flex-col justify-end">
                {campaignPrice ? 
                   <>

@@ -10,6 +10,7 @@ import Home from './components/store/home/Home.jsx';
 import Categories from './components/store/categories/Categories.jsx';
 import SearchResults from './components/store/search-results/SearchResults.jsx';
 import PublicLayout from './components/layout/PublicLayout.jsx';
+import ProductDetails from './components/store/product-details/ProductDetails.jsx'
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
               <Route index element={<Home/>}/>
               <Route path='/kategori/:category' element={<Categories/>}/>
               <Route path='/hitta' element={<SearchResults/>}/>
+              <Route path='/produkt/:slug' element={<ProductDetails/>}/>
             </Route>
 
             <Route element={<AdminLayout/>}>

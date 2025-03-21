@@ -4,7 +4,7 @@ import formatPrice from "../../../../../utils/formatPrice.js";
 function ProductListItem({ product, brand, img, price, campaignPrice, slug }) {
  return (
     <li className="h-24 border-b-2 border-border first-of-type:border-t-2 hover:[&_.title]:text-primary">
-        <Link to={slug}>
+        <Link to={`produkt/${slug}`}>
         <article className="size-full flex items-center justify-between gap-golden-2xl px-golden-lg py-golden-sm">
             <div className="h-full flex gap-golden-md items-center">
                 <div className="w-16 h-full shrink-0">
