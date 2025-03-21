@@ -16,6 +16,7 @@ export default function Category() {
 
   useEffect(() => {
    if(products) refetch();
+   window.scrollTo(0, 0)
   }, [category])
 
   return (

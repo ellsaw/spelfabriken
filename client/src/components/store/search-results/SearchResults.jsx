@@ -11,6 +11,7 @@ export default function SearchResults() {
 
     useEffect(() => {
         if(products) refetch();
+        window.scrollTo(0, 0)
     }, [location])
 
     const { products, refetch } = UseFetchProducts(`/api/products/store/search/${query}`);
