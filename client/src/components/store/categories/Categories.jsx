@@ -23,8 +23,8 @@ export default function Category() {
       <div className="px-golden-lg pt-golden-md">
       {products &&
       <>
-         <h2 className="text-lg font-bold">{category === "spel" || category === "konsoller" || category === "pc" || category === "tv-ljud-and-bild" || category === "hobby" ? products[0].supercategory : products[0].category}</h2>
-         <p className="font-semibold mt-golden-md">{products.length} produkter</p>
+         <h2 className="text-md font-bold">{category === "spel" || category === "konsoller" || category === "pc" || category === "tv-ljud-and-bild" || category === "hobby" ? products[0].supercategory : products[0].category}</h2>
+         <p className="font-semibold">{products.length} {products.length === 1 ? "produkt" : "produkter"}</p>
       </>
          }
       </div>
