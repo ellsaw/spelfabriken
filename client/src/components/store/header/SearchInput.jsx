@@ -10,12 +10,12 @@ export default function SearchInput() {
     function handleSubmit(event){
         event.preventDefault();
 
-        const trimmedQuery = query.trim().toLowerCase()
+        const trimmedQuery = query.trim().replace(/\//g, "")
 
         if(trimmedQuery != ""){
             inputRef.current.blur();
 
-            navigate(`/hitta?q=${query.trim()}`)
+            navigate(`/hitta?q=${trimmedQuery}`)
 
             inputRef.current.value = "";
         }
