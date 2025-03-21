@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
-import { dbGetForCampaignCarousel, dbGetForProductShowcase, dbGetForCategory, dbGetForSearch, dbGetForProductDetails } from '../../database/models/storeModels.js';
+import { dbGetForCampaignCarousel, dbGetForProductShowcase, dbGetForCategory, dbGetForSearch, dbGetForProductDetails, dbGetForRelatedProducts } from '../../database/models/storeModels.js';
 
 
 router.get("/campaign-carousel", (req, res) => {
@@ -61,6 +61,18 @@ router.get('/product-details/:slug', (req, res) => {
         res.status(500).json({error: error})
     }else{
         res.status(404).json({error: "Not found"})
+    }
+})
+
+router.get('/related-products/:relatedToId', (req, res) => {
+    const { relatedToId } = req.params;
+
+    const products = dbGetForRelatedProducts(relatedToId);
+
+    if(products){
+        res.status(200).json(products)
+    } else {
+        res.status(500).json()
     }
 })
 

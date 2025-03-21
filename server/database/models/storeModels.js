@@ -119,7 +119,6 @@ function dbGetForCategory(category){
     }
 }
 
-
 function search(query){
     try {
         const stmt = db.prepare(`
@@ -150,7 +149,7 @@ function search(query){
         return fuse.search(query);
 
     } catch (error) {
-        return error;
+        return new Error('Error from search:', error.message);
     }
 }
 
@@ -196,6 +195,7 @@ function dbGetForProductDetails(slug){
             SELECT
             id,
             product_name,
+            description,
             brand,
             supercategory,
             supercategory_slug,
@@ -221,4 +221,100 @@ function dbGetForProductDetails(slug){
         return {product: null, error: error}
     }
 }
-export { dbGetForCampaignCarousel, dbGetForProductShowcase, dbGetForCategory, dbGetForSearch, dbGetForProductDetails }
+
+function dbGetForRelatedProducts(relatedToId){
+    try {
+
+        function getSourceProduct(id){
+
+            try {
+                const stmt = db.prepare(`
+                    SELECT
+                    product_name,
+                    brand,
+                    category,
+                    supercategory
+                    FROM products
+                    WHERE id = ?;
+                    `)
+                
+                return stmt.get(id);
+            } catch (error) {
+                return new Error('Error from getSourceProduct:', error.message)
+            }
+
+        }
+
+        const sourceProduct = getSourceProduct(relatedToId)
+
+        const resultIds = [];
+        for(const value of Object.values(sourceProduct)){
+            const results = search(value);
+
+            results.forEach(result => {
+                if((!resultIds.includes(result.item.id)) && (result.item.id != relatedToId) && (resultIds.length < 8)){
+                    resultIds.push(result.item.id);
+                }
+            });
+
+            if(resultIds.length === 8) break;
+        }
+
+        const products = [];
+        resultIds.forEach(resultId=> {
+            const stmt = db.prepare(`
+                SELECT
+                id,
+                product_name,
+                brand,
+                supercategory,
+                category,
+                img,
+                price,
+                campaign_price,
+                slug
+                FROM products
+                WHERE id = ?;
+                `)
+                const product = stmt.get(resultId)
+    
+                products.push(product)
+        });
+
+        if(products.length <= 8){
+            for(let i = products.length; i < 8 ; i++){
+                const stmt = db.prepare(`
+                    SELECT
+                    id,
+                    product_name,
+                    brand,
+                    supercategory,
+                    category,
+                    img,
+                    price,
+                    campaign_price,
+                    slug
+                    FROM products
+                    WHERE id NOT IN (${( resultIds.length > 0 ? resultIds.join(",") + ", " : "") + relatedToId})
+                    ORDER BY RANDOM();
+                    `)
+                    const product = stmt.get()
+        
+                    resultIds.push(product.id);
+                    products.push(product)
+            }
+        }
+
+
+        products.forEach(product => {
+            product.img = bufferToImg(product.img);
+        });
+
+        return products;
+        
+    } catch (error) {
+        console.error(error.message)
+    }
+}
+
+export { dbGetForCampaignCarousel, dbGetForProductShowcase, dbGetForCategory, dbGetForSearch, dbGetForProductDetails, dbGetForRelatedProducts }
