@@ -111,10 +111,10 @@ export default function Hero() {
  return (
     <section className="overflow-hidden relative" onMouseEnter={handleInterval} onMouseLeave={handleInterval} onTouchStart={handleInterval} onTouchEnd={handleInterval}>
         <div ref={heroTrackRef} className="h-[28rem] flex w-fit relative" onMouseDown={(event) => handleHeroCarousel(event)} onTouchStart={(event) => handleHeroCarousel(event)}>
-            <HeroItem img="./src/assets/images/hero/nvidia-5000-series.avif" text="NVIDIA GeForce RTX 5070" buttonlabel="Shoppa nu" href="/" invisibleText={false}/>
-            <HeroItem img="./src/assets/images/hero/nintendo-switch-2.avif" text="Nintendo Switch 2" buttonlabel="Shoppa nu" href="/" invisibleText={true}/>
-            <HeroItem img="./src/assets/images/hero/assassins-creed-shadows.avif" text="Assassin's Creed Shadows" buttonlabel="Shoppa nu" href="/" invisibleText={true}/>
-            <HeroItem img="./src/assets/images/hero/grand-theft-auto-vi.avif" text="Grand Theft Auto VI" buttonlabel="Shoppa nu" href="/" invisibleText={false}/>
+            <HeroItem img="./src/assets/images/hero/nvidia-5000-series.avif" text="NVIDIA GeForce RTX 5070" buttonlabel="Shoppa nu" href="/produkt/nvidia-msi-geforce-rtx-5070-12g-gaming-trio-oc" invisibleText={false}/>
+            <HeroItem img="./src/assets/images/hero/nintendo-switch-2.avif" text="Nintendo Switch 2" buttonlabel="Shoppa nu" href="/produkt/nintendo-nintendo-switch-2" invisibleText={true}/>
+            <HeroItem img="./src/assets/images/hero/assassins-creed-shadows.avif" text="Assassin's Creed Shadows" buttonlabel="Shoppa nu" href="/produkt/ubisoft-assassins-creed-shadows-xbxs" invisibleText={true}/>
+            <HeroItem img="./src/assets/images/hero/grand-theft-auto-vi.avif" text="Grand Theft Auto VI" buttonlabel="Shoppa nu" href="/produkt/rockstar-games-grand-theft-auto-vi-ps5" invisibleText={false}/>
         </div>
         <div className="absolute bottom-golden-md left-1/2 -translate-x-1/2 flex gap-golden-md">
             {[...Array(4)].map((_, index) => (
