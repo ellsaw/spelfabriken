@@ -50,7 +50,7 @@ export default function Sidebar({ toggleSidebar }) {
       <aside ref={sidebarRef} className="h-[100dvh] bg-white w-[90vw] max-w-[350px] fixed right-0 top-0 z-50 scale-x-0 origin-right transition-transform duration-150 overflow-y-auto">
         <SidebarContent close={handleSidebar.close}/>
       </aside>
-      <div ref={overlayRef} className="fixed top-0 left-0 size-full bg-neutral-950/20 backdrop-blur-sm z-40 opacity-0 transition-opacity duration-150" onClick={handleSidebar.close}></div>
+      <div ref={overlayRef} className="fixed top-0 left-0 size-full bg-neutral-950/50 z-40 opacity-0 transition-opacity duration-150" onClick={handleSidebar.close}></div>
     </>
   );
 }

@@ -39,7 +39,7 @@ export default function SearchResults() {
          {products ? 
             products.map((product) => (
                <div key={product.id}>
-                  <ProductCard product={product.product_name} brand={product.brand} img={product.img} price={product.price} campaignPrice={product.campaign_price} slug={product.slug} small={true}/>
+                  <ProductCard product={product}/>
                </div>
             ))
          :

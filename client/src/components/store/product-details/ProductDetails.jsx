@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router";
+import { useCart } from "../cart/CartContext.jsx";
 import formatPrice from "../../../utils/formatPrice";
 import Description from "./Description.jsx";
 import RelatedProductsCarousel from "./RelatedProductsCarousel.jsx";
@@ -8,6 +9,7 @@ export default function ProductDetails() {
     const navigate = useNavigate()
     const { slug } = useParams()
     const [ product, setProduct ] = useState(null);
+    const { cart, dispatch } = useCart()
 
     useEffect(() => {
         fetch(`/api/products/store/product-details/${slug}`)
@@ -38,11 +40,11 @@ export default function ProductDetails() {
                 <h2 className="font-bold text-md leading-6">{product.product_name}</h2>
                 <p className="leading-6 text-neutral-500 font-medium">{product.brand}</p>
             </div>
-            <div className="mt-golden-md flex flex-col sm:flex-row">
+            <div className="mt-golden-md flex gap-golden-lg flex-col sm:flex-row">
                 <div className="aspect-video w-full h-fit sm:flex-5">
                     <img className="object-contain size-full" src={product.img} alt="" />
                 </div>
-                <div className="mt-golden-lg sm:mt-0 flex flex-col gap-golden-md w-full sm:flex-3">
+                <div className="flex flex-col gap-golden-md w-full sm:flex-3">
                     <div className="h-full flex justify-center items-center">
                     {product.campaign_price ?
                         <div className="mb-golden-md text-center">
@@ -57,7 +59,11 @@ export default function ProductDetails() {
                         <p className="text-green-600 font-bold leading-6">{(Math.floor(Math.random() * 49)) + 1} i lager</p>
                         <p className="font-light leading-4">Förväntad leveranstid: <span className="font-medium">2-4 arbetsdagar</span></p>
                     </div>
-                    <button className="text-white bg-primary hover:bg-primary-40l py-golden-md w-full rounded-md font-semibold cursor-pointer mt-golden-md">Lägg till i varukorg</button>
+                    {(cart.items.some(item => item.id === product.id)) ?
+                    <p className="text-white bg-green-800 py-golden-md w-full rounded-md font-semibold mt-golden-md text-center">Tillagd i varukorgen</p>
+                    :
+                    <button className="text-white bg-primary hover:bg-primary-40l py-golden-md w-full rounded-md font-semibold cursor-pointer mt-golden-md" onClick={() => dispatch({ type: "ADD_TO_CART", payload: {id: product.id, price: product.price, campaignPrice: product.campaign_price || null}})}>Lägg i varukorgen</button>
+                    }
                     <div className="flex text-center font-semibold">
                         <div className="flex-1"><p><span className="text-green-600">✓</span> Fri frakt</p></div>
                         <div className="flex-1"><p><span className="text-green-600">✓</span> Fria returer</p></div>

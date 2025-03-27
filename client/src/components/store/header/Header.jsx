@@ -2,13 +2,22 @@ import { useEffect, useRef, useState } from "react";
 import SearchInput from "./SearchInput.jsx";
 import LowerNav from "./lower-nav/LowerNav.jsx";
 import Sidebar from "./sidebar/Sidebar.jsx";
+import Cart from "../cart/Cart.jsx";
+import { useCart } from "../cart/CartContext.jsx";
 
 export default function Header() {
   const [ showSidebar, setShowSidebar ] = useState(false);
+  const [ showCart, setShowCart ] = useState(false);
+  const { cart } = useCart();
   const headerRef = useRef(null);
+  const cartButtonRef = useRef(null);
 
   function toggleSidebar(){
     setShowSidebar(!showSidebar);
+  }
+
+  function toggleCart(){
+    setShowCart(!showCart);
   }
 
 
@@ -58,7 +67,7 @@ export default function Header() {
             <SearchInput />
           </div>
           <div className="flex">
-            <button className="h-10">
+            <button ref={cartButtonRef} className="relative h-10 cursor-pointer disabled:opacity-50" aria-label="Öppna varukorg" disabled={cart.items.length === 0} onClick={toggleCart}>
               <svg
                 className="fill-white"
                 width="100%"
@@ -72,6 +81,9 @@ export default function Header() {
                   fill="currentColor"
                 />
               </svg>
+              {cart.items.length > 0 &&
+                <div className="absolute top-0 right-0 rounded-full size-4 text-xs font-bold bg-white text-black leading-3.5">{cart.items.length < 10 ? cart.items.length : "9+"}</div>
+              }
             </button>
             <button className="h-10 lg:hidden cursor-pointer" aria-label="Sidebar" onClick={toggleSidebar}>
               <svg
@@ -97,6 +109,9 @@ export default function Header() {
     </header>
     {showSidebar &&
     <Sidebar toggleSidebar={toggleSidebar}/>
+    }
+    {showCart &&
+      <Cart cartButton={cartButtonRef.current} toggleCart={toggleCart}/>
     }
     </>
   );

@@ -317,4 +317,30 @@ function dbGetForRelatedProducts(relatedToId){
     }
 }
 
-export { dbGetForCampaignCarousel, dbGetForProductShowcase, dbGetForCategory, dbGetForSearch, dbGetForProductDetails, dbGetForRelatedProducts }
+function dbGetForCart(id){
+    try {
+        const stmt = db.prepare(`
+        SELECT
+        id,
+        product_name,
+        brand,
+        img,
+        price,
+        campaign_price,
+        slug
+        FROM products
+        WHERE id = ?
+        `)
+
+        const product = stmt.get(id);
+
+        product.img = bufferToImg(product.img);
+
+        return product;
+
+    } catch (error) {
+        console.error(error.message)
+    }
+}
+
+export { dbGetForCampaignCarousel, dbGetForProductShowcase, dbGetForCategory, dbGetForSearch, dbGetForProductDetails, dbGetForRelatedProducts, dbGetForCart }
