@@ -14,7 +14,7 @@ function cartReducer(cart, action){
             return {
                 ...cart,
                 items: [...cart.items, { id: action.payload.id, quantity: 1 }],
-                sum: cart.sum + action.payload.price,
+                sum: cart.sum + (action.payload.campaignPrice || action.payload.price),
                 rebate: (action.payload.campaignPrice && cart.rebate - (action.payload.price - action.payload.campaignPrice)) || cart.rebate
             };
         case "REMOVE_FROM_CART":
@@ -23,21 +23,21 @@ function cartReducer(cart, action){
              return {
                 ...cart,
                 items: cart.items.filter((item) => item.id != removedItem.id),
-                sum: cart.sum - (action.payload.price * removedItem.quantity),
+                sum: cart.sum - ((action.payload.campaignPrice || action.payload.price) * removedItem.quantity),
                 rebate: action.payload.campaignPrice ? cart.rebate + ((action.payload.price - action.payload.campaignPrice) * removedItem.quantity) : cart.rebate
             }
         case "INCREMENT":
             return {
                 ...cart,
                 items: cart.items.map(item => item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item),
-                sum: cart.sum + action.payload.price,
+                sum: cart.sum + (action.payload.campaignPrice || action.payload.price),
                 rebate: action.payload.campaignPrice ? cart.rebate - (action.payload.price - action.payload.campaignPrice) : cart.rebate
             }
         case "DECREMENT":
             return {
                 ...cart,
                 items: cart.items.map(item => item.id === action.payload.id ? { ...item, quantity: item.quantity - 1 } : item),
-                sum: cart.sum - action.payload.price,
+                sum: cart.sum - (action.payload.campaignPrice || action.payload.price),
                 rebate: action.payload.campaignPrice ? cart.rebate + action.payload.price - action.payload.campaignPrice : cart.rebate
             }
     }
