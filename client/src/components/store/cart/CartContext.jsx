@@ -26,14 +26,14 @@ function cartReducer(cart, action){
                 ...cart,
                 items: cart.items.filter((item) => item.id != removedItem.id),
                 sum: cart.sum - (action.payload.price * removedItem.quantity),
-                rebate: action.payload.campaignPrice ? cart.rebate + action.payload.price - action.payload.campaignPrice : cart.rebate
+                rebate: action.payload.campaignPrice ? cart.rebate + ((action.payload.price - action.payload.campaignPrice) * removedItem.quantity) : cart.rebate
             }
         case "INCREMENT":
             return {
                 ...cart,
                 items: cart.items.map(item => item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item),
                 sum: cart.sum + action.payload.price,
-                rebate: action.payload.campaignPrice ? cart.rebate - action.payload.price - action.payload.campaignPrice : cart.rebate
+                rebate: action.payload.campaignPrice ? cart.rebate - (action.payload.price - action.payload.campaignPrice) : cart.rebate
             }
         case "DECREMENT":
             return {
