@@ -15,20 +15,14 @@ export default function Cart({ cartButton, toggleCart }) {
 
     const handle = {
         initialize(){
-            const body = document.querySelector("body");
-            
             setTimeout(() => {
               overlayRef.current.classList.remove("opacity-0")
               cartRef.current.classList.remove("scale-0")
-              body.classList.add("overflow-hidden")
             }, 1);
         },
         close(){
-            const body = document.querySelector("body");
-
             overlayRef.current.classList.add("opacity-0")
             cartRef.current.classList.add("scale-0")
-            body.classList.remove("overflow-hidden")
 
             setTimeout(() => {
                 toggleCart()
@@ -73,7 +67,7 @@ export default function Cart({ cartButton, toggleCart }) {
                     <p className="flex justify-between font-light">Rabatt: <span className="font-normal">{cart.rebate < 0 ? `- ${formatPrice(Math.abs(cart.rebate))}` : 0} kr</span></p>
                     <p className="flex justify-between -mt-1">Summa: <span className="font-semibold">{formatPrice(cart.sum)} kr</span></p>
                 </div>
-                <Link className="block font-semibold bg-primary hover:bg-primary-40l text-white w-full text-center py-golden-md rounded-xl" to={"/kassa"}>Gå till kassan</Link>
+                <Link className="block font-semibold bg-primary hover:bg-primary-40l text-white w-full text-center py-golden-md rounded-xl" to={"/kassa"} onClick={handle.close}>Gå till kassan</Link>
             </div>
         </section>
         <div ref={overlayRef} className="fixed size-full bg-neutral-950/50 opacity-0 transition-opacity duration-150 top-0 z-40" onClick={handle.close}></div>

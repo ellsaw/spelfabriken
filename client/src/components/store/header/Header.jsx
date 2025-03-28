@@ -59,7 +59,7 @@ export default function Header() {
 
   return (
     <>
-    <header ref={headerRef} className="bg-black text-white px-golden-md border-b-4 border-primary sm:-top-28 -top-32 z-30 transition-all duration-300">
+    <header ref={headerRef} className={`bg-black text-white px-golden-md border-b-4 border-primary z-30 transition-all duration-300 ${showCart ? "fixed! top-0! w-full" : "sm:-top-28 -top-32"}`}>
       <div className="max-w-[1024px] mx-auto">
         <div className="flex justify-between items-center py-golden-md">
           <h1 className="text-lg font-medium">LOGO</h1>
