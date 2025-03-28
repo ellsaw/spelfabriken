@@ -67,7 +67,7 @@ export default function Header() {
             <SearchInput />
           </div>
           <div className="flex">
-            <button ref={cartButtonRef} className="relative h-10 cursor-pointer disabled:opacity-50" aria-label="Öppna varukorg" disabled={cart.items.length === 0} onClick={toggleCart}>
+            <button ref={cartButtonRef} className="relative h-10 cursor-pointer disabled:opacity-50 disabled:cursor-auto" aria-label="Öppna varukorg" disabled={cart.items.length === 0} onClick={toggleCart}>
               <svg
                 className="fill-white"
                 width="100%"
