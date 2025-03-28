@@ -7,8 +7,6 @@ const initialCart = JSON.parse(localStorage.getItem("cart")) || {
     rebate: 0
 }
 
-// TODO: LocalStorageSync
-
 
 function cartReducer(cart, action){
     switch(action.type){
