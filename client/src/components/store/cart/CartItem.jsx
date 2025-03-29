@@ -13,7 +13,7 @@ export default function CartItem({ id, quantity }) {
     <li className="border-b-[1px] border-border last-of-type:border-none">
       {product ? (
         <article className="flex flex-col py-golden-lg">
-          <div className="flex items-start justify-between">
+          <div className="flex items-start justify-between gap-golden-md">
             <div className="flex gap-golden-md flex-1">
               <div className="aspect-video w-12 shrink-0">
                 <Link className="size-full" to={`/produkt/${product.slug}`}>

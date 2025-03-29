@@ -11,9 +11,13 @@ import Categories from './components/store/categories/Categories.jsx';
 import SearchResults from './components/store/search-results/SearchResults.jsx';
 import PublicLayout from './components/layout/PublicLayout.jsx';
 import ProductDetails from './components/store/product-details/ProductDetails.jsx'
+import Checkout from './components/store/checkout/Checkout.jsx';
+
+import { CartProvider } from './components/store/cart/CartContext.jsx';
 
 export default function App() {
   return (
+    <CartProvider>
     <BrowserRouter>
         <Routes>
             <Route element={<PublicLayout/>}>
@@ -22,6 +26,7 @@ export default function App() {
               <Route path='/hitta' element={<SearchResults/>}/>
               <Route path='/produkt/:slug' element={<ProductDetails/>}/>
             </Route>
+            <Route path='/kassa' element={<Checkout/>}/>
 
             <Route element={<AdminLayout/>}>
               <Route path='/admin' element={<Admin/>}/>
@@ -31,6 +36,7 @@ export default function App() {
             </Route>
         </Routes>
     </BrowserRouter>
+    </CartProvider>
  );
 }
 

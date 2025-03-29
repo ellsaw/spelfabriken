@@ -6,7 +6,6 @@ export default function Home() {
 
  return (
     <>
-      <title>Spelfabriken</title>
       <Hero/>
       <CampaignCarousel/>
       <ProductShowcaseContainer/>
