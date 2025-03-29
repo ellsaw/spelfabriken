@@ -41,7 +41,7 @@ export default function CheckoutForm({ sum }) {
             </div>
             <div className="mt-golden-lg">
                 <p className="flex flex-col text-center leading-5 ">Att betala: <span className="text-md font-semibold">{formatPrice(sum)} kr</span><span className="font-light mt-golden-sm">Inkl. moms och frakt</span></p>
-                <button className="font-semibold bg-primary hover:bg-primary-40l text-white w-full text-center py-golden-md rounded-xl mt-golden-md" type="sumbit">Köp</button>
+                <button className="font-semibold bg-primary hover:bg-primary-40l text-white w-full text-center py-golden-md rounded-xl mt-golden-md cursor-pointer" type="sumbit">Köp</button>
             </div>
         </form>
     </section>
