@@ -1,1 +1,1 @@
-# College School Project E-Commerce
+School Project web application in React / Vue
