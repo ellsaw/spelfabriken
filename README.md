@@ -1,2 +1,2 @@
 Spelfabriken
-School Project web application in React / Vue
+School Project web application in React / Vite
